@@ -4,9 +4,11 @@ include __DIR__.'/vendor/autoload.php';
 
 $f3 = Base::instance();
 $f3->set('DEBUG', 3);
+$f3->set('DB', new DB\SQL ('mysql:host=localhost;port=3306;dbname=api2', 'root', ''));
 
-$f3->route('POST /users', function( $f3, $params) {
-
+$f3->route('GET /users', function( $f3, $params) {
+	$user=new DB\SQL\Mapper($f3->get('DB'),'user');
+	print_r($user);
 });
 
 $f3->route('GET /', function($f3 ){
